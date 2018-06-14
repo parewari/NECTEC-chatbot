@@ -66,6 +66,7 @@ class BotController extends Controller
      $textMessageBuilder = new TextMessageBuilder(json_encode($events));
 
      //l ส่วนของคำสั่งตอบกลับข้อความ
+     $textMessageBuilder = '5555555';
      $response = $bot->replyMessage($replyToken,$textMessageBuilder);
      if ($response->isSucceeded()) {
          echo 'Succeeded!';
