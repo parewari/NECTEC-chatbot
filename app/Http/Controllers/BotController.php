@@ -63,8 +63,13 @@ class BotController extends Controller
          $replyToken = $events['events'][0]['replyToken'];
      }
      // ส่วนของคำสั่งจัดเตียมรูปแบบข้อความสำหรับส่ง
+     //REPLYTOKEN
      //$textMessageBuilder = new TextMessageBuilder(json_encode($events));
-      $textMessageBuilder = new TextMessageBuilder('55555');
+
+      //$textMessageBuilder = new TextMessageBuilder('55555');
+        $textMessageBuilder = new TextMessageBuilder('55555');
+        print($replyToken);
+
      //l ส่วนของคำสั่งตอบกลับข้อความ
      $response = $bot->replyMessage($replyToken,$textMessageBuilder);
      if ($response->isSucceeded()) {
@@ -73,7 +78,7 @@ class BotController extends Controller
      }
 
      // Failed
-     echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+     //echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
 
     }
