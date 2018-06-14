@@ -80,6 +80,37 @@ class BotController extends Controller
      // Failed
      echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
+     // แปลงข้อความรูปแบบ JSON  ให้อยู่ในโครงสร้างตัวแปร array
+$events = json_decode($content, true);
+if(!is_null($events)){
+    // ถ้ามีค่า สร้างตัวแปรเก็บ replyToken ไว้ใช้งาน
+    $replyToken = $events['events'][0]['replyToken'];
+    $typeMessage = $events['events'][0]['message']['type'];
+    $userMessage = $events['events'][0]['message']['text'];
+    switch ($typeMessage){
+        case 'text':
+            switch ($userMessage) {
+                case "A":
+                    $textReplyMessage = "คุณพิมพ์ A";
+                    break;
+                case "B":
+                    $textReplyMessage = "คุณพิมพ์ B";
+                    break;
+                default:
+                    $textReplyMessage = " คุณไม่ได้พิมพ์ A และ B";
+                    break;
+            }
+            break;
+        default:
+            $textReplyMessage = json_encode($events);
+            break;
+    }
+}
+// ส่วนของคำสั่งจัดเตียมรูปแบบข้อความสำหรับส่ง
+$textMessageBuilder = new TextMessageBuilder($textReplyMessage);
+
+//l ส่วนของคำสั่งตอบกลับข้อความ
+$response = $bot->replyMessage($replyToken,$textMessageBuilder);
 
     }
 
