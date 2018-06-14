@@ -68,7 +68,7 @@ class BotController extends Controller
 
       //$textMessageBuilder = new TextMessageBuilder('55555');
         $textMessageBuilder = new TextMessageBuilder('55555');
-        print($replyToken);
+        //print($replyToken);
 
      //l ส่วนของคำสั่งตอบกลับข้อความ
      $response = $bot->replyMessage($replyToken,$textMessageBuilder);
@@ -78,7 +78,7 @@ class BotController extends Controller
      }
 
      // Failed
-     //echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+     echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
 
     }
